@@ -1,9 +1,11 @@
 
+DROP DATABASE IF EXISTS proyect;
 CREATE DATABASE IF NOT EXISTS proyect;
 
 USE proyect;
 
 # ----------  Creando la tabla proyecto  ----------
+DROP TABLE IF EXISTS carrera;
 CREATE TABLE IF NOT EXISTS carrera (
     id_carrera SMALLINT UNSIGNED AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL UNIQUE,
@@ -12,14 +14,16 @@ CREATE TABLE IF NOT EXISTS carrera (
 
 
 # ----------  Creando la tabla aprendiz  ----------
+DROP TABLE IF EXISTS aprendiz;
 CREATE TABLE IF NOT EXISTS aprendiz (
     id_aprendiz INT UNSIGNED AUTO_INCREMENT,
     nombre VARCHAR(35) NOT NULL,
-    PRIMARY KEY(id_aprendiz),
+    PRIMARY KEY(id_aprendiz)
 );
 
 
 # ----------  Creando la tabla especialidad  ----------
+DROP TABLE IF EXISTS especialidad;
 CREATE TABLE IF NOT EXISTS especialidad(
     id_especialidad SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(30) NOT NULL UNIQUE,
@@ -28,7 +32,8 @@ CREATE TABLE IF NOT EXISTS especialidad(
 
 
 # ----------  Creando la tabla enfasis  ----------
-CREATE TABLE enfasis (
+DROP TABLE IF EXISTS enfasis;
+CREATE TABLE IF NOT EXISTS enfasis (
     id_enfasis SMALLINT UNSIGNED AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL UNIQUE,
     PRIMARY KEY(id_enfasis)
@@ -36,6 +41,7 @@ CREATE TABLE enfasis (
 
 
 # ----------  Creando la tabla instructor ----------
+DROP TABLE IF EXISTS instructor;
 CREATE TABLE IF NOT EXISTS instructor(
     id_instructor MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(35) NOT NULL,
@@ -46,7 +52,8 @@ CREATE TABLE IF NOT EXISTS instructor(
 
 
 # ----------  Creando la tabla ruta  ----------
-CREATE TABLE ruta (
+DROP TABLE IF EXISTS ruta;
+CREATE TABLE IF NOT EXISTS ruta (
     id_ruta SMALLINT UNSIGNED AUTO_INCREMENT,
     id_carrera SMALLINT UNSIGNED,
     id_enfasis SMALLINT UNSIGNED,
@@ -57,7 +64,8 @@ CREATE TABLE ruta (
 
 
 # ----------  Creando la tabla curso  ----------
-CREATE TABLE curso (
+DROP TABLE IF EXISTS curso;
+CREATE TABLE IF NOT EXISTS curso (
     id_curso SMALLINT UNSIGNED AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
     id_instructor MEDIUMINT UNSIGNED,
@@ -67,7 +75,8 @@ CREATE TABLE curso (
 
 
 # ----------  Creando la tabla curso_ruta  ----------
-CREATE TABLE curso_ruta (
+DROP TABLE IF EXISTS curso_ruta;
+CREATE TABLE IF NOT EXISTS curso_ruta (
     id_curso SMALLINT UNSIGNED,
     id_ruta SMALLINT UNSIGNED, 
     FOREIGN KEY(id_curso) REFERENCES curso(id_curso) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -76,7 +85,8 @@ CREATE TABLE curso_ruta (
 
 
 # ----------  Creando la tabla matricula  ----------
-CREATE TABLE matricula (
+DROP TABLE IF EXISTS matricula;
+CREATE TABLE IF NOT EXISTS matricula (
     id_matricula INT AUTO_INCREMENT,
     id_ruta SMALLINT UNSIGNED,
     id_aprendiz INT UNSIGNED,
@@ -184,7 +194,6 @@ INSERT INTO ruta(id_carrera,id_enfasis) VALUES
 (5,10),
 (5,11),
 (NULL,12);
-
 
 # ----------  poblando la tabla curso_ruta  ----------
 /* ----- Se debe hacer el alter table add duracion antes de ejecutar ----- */
