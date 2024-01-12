@@ -59,4 +59,3 @@ SELECT i.nombre AS instructores_sin_curso FROM instructor AS i
 LEFT JOIN curso AS c ON c.id_instructor = i.id_instructor
 WHERE c.id_instructor IS NULL;
 
-

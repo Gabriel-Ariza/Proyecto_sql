@@ -94,12 +94,6 @@ JOIN ruta AS r ON r.id_ruta = m.id_ruta
 JOIN curso_ruta AS cr ON cr.id_ruta = r.id_ruta
 JOIN curso AS c ON c.id_curso = cr.id_curso
 WHERE cr.id_curso = 17 GROUP BY a.nombre, c.nombre;
-
-SELECT aprendiz.nombre
-FROM aprendiz
-JOIN matricula ON matricula.id_aprendiz = aprendiz.id_aprendiz
-JOIN matricula_curso ON matricula_curso.id_matricula = matricula.id_matricula
-WHERE matricula_curso.id_curso = 17;
 ```
 
 <br>
@@ -190,3 +184,14 @@ WHERE c.id_instructor IS NULL;
 
 
 ¡Demuestra tu conocimiento sobre MySQL! 🚀✨
+
+
+## DIAGRAMAS
+
+#### **<span style="color:#c07dff;font-weight:bolder;">ENTIDAD RELACION</span>** &nbsp; 
+
+![Alt text](entidad.png)
+
+### **<span style="color:#c07dff;font-weight:bolder;">RELACIONAL</span>** &nbsp; 
+
+![Alt text](relacional.png)
