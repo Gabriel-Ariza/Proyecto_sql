@@ -284,3 +284,29 @@ VALUES
 (6,10,3),
 (7,11,3),
 (7,11,3);
+
+
+
+/* EXTRA */
+CREATE TRIGGER carrera_tiene_aprendices
+BEFORE DELETE ON carrera
+FOR EACH ROW
+BEGIN
+    DECLARE tiene_aprendices INT;
+    SELECT COUNT(*) INTO tiene_aprendices FROM aprendiz WHERE id_carrera = OLD.id_carrera;
+    IF tiene_aprendices > 0 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No se puede eliminar una carrera que tiene aprendices asociados';
+    END IF;
+END;
+
+
+CREATE TRIGGER aprendiz_tiene_matricula
+BEFORE INSERT ON aprendiz
+FOR EACH ROW
+BEGIN
+    DECLARE existe_nombre INT;
+    SELECT COUNT(*) INTO existe_nombre FROM aprendiz WHERE nombre = NEW.nombre;
+    IF existe_nombre > 0 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El nombre del aprendiz ya existe';
+    END IF;
+END;
